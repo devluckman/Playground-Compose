@@ -4,6 +4,10 @@ plugins {
 
 dependencies {
     COMMON_THEME
+    DOMAIN
+    DATA
+    CORE
     media3Dependency()
     testDependencies()
+    composeDependencies()
 }
