@@ -6,11 +6,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.man.composable.TikTokVerticalVideoPager
 import com.man.theme.DarkBlue
 import com.man.theme.DarkPink
 
@@ -23,7 +27,10 @@ import com.man.theme.DarkPink
 @Composable
 fun ForYouTabScreen(
     navController: NavController,
+    viewModel: ForYouViewModel = hiltViewModel()
 ) {
+
+    val viewState by viewModel.viewState.collectAsState()
 
     Box(
         modifier = Modifier
@@ -36,9 +43,19 @@ fun ForYouTabScreen(
         contentAlignment = Alignment.Center
     ) {
 
-        Text(text = "FYP Screen", style = MaterialTheme.typography.labelLarge.copy(
-            color = Color.White
-        ))
+        viewState?.forYouPageFeed?.let {
+
+            TikTokVerticalVideoPager(
+                videos = it,
+                onclickComment = { },
+                onClickLike = { s: String, b: Boolean -> },
+                onclickFavourite = {},
+                onClickAudio = {},
+                onClickUser = {  }
+            )
+
+        }
+
 
     }
 

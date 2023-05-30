@@ -45,6 +45,7 @@ fun HomeScreen(
     val coroutineScope = rememberCoroutineScope()
 
     TikTokTheme(darkTheme = true) {
+
         Box(modifier = Modifier.fillMaxSize()) {
 
             HorizontalPager(
@@ -52,7 +53,7 @@ fun HomeScreen(
                 state = pagerState
             ) {
                 when (it) {
-                    0 -> FollowingScreen(navController = navController)
+                    0 -> FollowingScreen(navController = navController, parentPagerState = pagerState)
                     1 -> ForYouTabScreen(navController = navController)
                 }
             }
